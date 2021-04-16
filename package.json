@@ -1,0 +1,19 @@
+{
+  "name": "digi-social-back",
+  "version": "1.0.0",
+  "description": "api digi-social",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fetra01/digi-social-back.git"
+  },
+  "author": "FA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fetra01/digi-social-back/issues"
+  },
+  "homepage": "https://github.com/Fetra01/digi-social-back#readme"
+}
