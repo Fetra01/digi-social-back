@@ -4,18 +4,26 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize("sqlite:database.db");
 
-//const cors = require('cors');
+const cors = require('cors');
 
-//require("dotenv").config();
+require("dotenv").config();
 
 const app = express();
 
+const corsOption = {
+    origin: process.env.REACT_URL,
+}
+
+app.use(cors(corsOption));
 app.use(express.json());
 
 app.use("/user", userRouter(sequelize));
 
+
+const port = process.env.PORT || 8000;
+
 sequelize
     .sync()
     .then(() => 
-        app.listen(8000, () => console.log("On est sur le port 8000 !"))
+        app.listen(8000, () => console.log(`On est sur le port ${port} !`))
     );
