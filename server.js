@@ -17,7 +17,11 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 
-app.use("/user", userRouter(sequelize));
+app.get("/", (req, res) => {
+    res.json([{ message: "Hello word ! "}]);
+});
+
+app.use("/api", userRouter(sequelize));
 
 
 const port = process.env.PORT || 8000;
