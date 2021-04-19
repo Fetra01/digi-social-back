@@ -29,5 +29,5 @@ const port = process.env.PORT || 8000;
 sequelize
     .sync()
     .then(() => 
-        app.listen(8000, () => console.log(`On est sur le port ${port} !`))
+        app.listen(port, () => console.log(`On est sur le port ${port} !`))
     );
