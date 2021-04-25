@@ -1,33 +1,27 @@
 const express = require('express');
-const  { userRouter } = require('./user/router');
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize("sqlite:database.db");
-
 const cors = require('cors');
-
-require("dotenv").config();
-
+const bodyParser = require('body-parser');
+const userRoutes = require('./routes/user.routes');
+require("dotenv").config({path:'./config/.env'});
+require('./config/db');
 const app = express();
 
-const corsOption = {
+const port = process.env.PORT;
+
+const corsOptions = {
     origin: process.env.REACT_URL,
 }
 
-app.use(cors(corsOption));
-app.use(express.json());
+app.use(
+    cors(corsOptions),
+    //bodyParser.json(),
+    //bodyParser.urlencoded({extended: true}),
+    express.json()
+);
 
-app.get("/", (req, res) => {
-    res.json([{ message: "Hello word ! "}]);
-});
-
-app.use("/api", userRouter(sequelize));
+//ROUTES
+app.use('/api/user', userRoutes);
 
 
-const port = process.env.PORT || 8000;
-
-sequelize
-    .sync()
-    .then(() => 
-        app.listen(port, () => console.log(`On est sur le port ${port} !`))
-    );
+//SERVER
+app.listen(port, () => console.log(`On est sur Le port ${port}`));
