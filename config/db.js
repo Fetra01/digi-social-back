@@ -4,7 +4,7 @@ const dbConnect = process.env.DB_USER_PASS;
 
 mongoose
   .connect(
-    "mongodb+srv://" + dbConnect + "@cluster0.k855q.mongodb.net/projet-mern",
+    process.env.CONNECT_DB,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
