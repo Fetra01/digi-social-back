@@ -15,6 +15,9 @@ const port = process.env.PORT;
 const corsOptions = {
     origin: process.env.REACT_URL,
     credentials: true,
+    headers: {
+        'Access-Control-Allow-Origin': process.env.REACT_URL,
+    },
     'allowedHeaders': ['sessionId', 'Content-Type'],
     'exposedHeaders': ['sessionId'],
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -34,6 +37,7 @@ app.get('*', checkUser);
 app.get('/jwtid', requireAuth, (req, res) => {
     res.status(200).send(res.locals.user._id);
 })
+
 
 //ROUTES
 app.use('/api/user', userRoutes);
